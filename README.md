@@ -17,3 +17,20 @@ Things to download for development environment
     3. Find or Create .m2 folder under your /Users/<UserName>/ and copy the setting.xml from repo to this location
     4. Install Docker for Mac on Mac OS
     5. Install Vagrant
+
+Steps to bring up development environment
+    
+    Pre-Requisites
+    1.  Please Install all the above before you start following the below steps
+
+    Steps for bring up magnolia initially
+    1. Clone the repo
+    2. cd magnolia-cloud
+    3. mvn -U clean install
+    4. vagrant up --no-parallel
+
+    Steps to boot magnolia
+    1. vagrant up --no-parallel (Issues this command on terminal inside the magnolia-cloud folder)
+
+    Steps to stop magnolia
+    1. vagrant halt (Issues this command on terminal inside the magnolia-cloud folder)
