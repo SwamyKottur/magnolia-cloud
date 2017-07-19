@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <!-- This is a settings.xml file retrieved from http://nexus.magnolia-cms.com/ -->
+  <servers>
+    <server>
+      <id>magnolia.nexus.enterprise</id>
+      <username>magnolia_training</username>
+      <password>welcome_training</password>
+    </server>
+  </servers>
+  <profiles>
+    <profile>
+      <id>magnolia-repositories</id>
+      <repositories>
+        <repository>
+          <id>magnolia.nexus.enterprise</id>
+          <url>https://nexus.magnolia-cms.com/content/groups/enterprise/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>vaadin-addons</id>
+          <url>http://maven.vaadin.com/vaadin-addons/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>magnolia.nexus.enterprise</id>
+          <url>https://nexus.magnolia-cms.com/content/groups/enterprise/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>magnolia-repositories</activeProfile>
+  </activeProfiles>
+  <pluginGroups>
+    <!-- define the sonatype plugin group, so the nexus plugins will work without typing the groupId -->
+    <pluginGroup>org.sonatype.plugins</pluginGroup>
+    <pluginGroup>org.apache.tomcat.maven</pluginGroup>
+  </pluginGroups>
+</settings>
