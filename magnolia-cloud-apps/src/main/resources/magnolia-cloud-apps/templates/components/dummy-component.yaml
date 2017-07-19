@@ -1,0 +1,2 @@
+templateScript: /magnolia-cloud-apps/templates/components/dummy-component.ftl
+renderType: freemarker

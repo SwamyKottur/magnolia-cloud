@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module SYSTEM "module.dtd" >
+<module>
+  <name>magnolia-cloud-apps</name>
+  <displayName>${project.name}</displayName>
+  <description>${project.description}</description>
+  <class>com.magnolia.cloud.apps.MagnoliaCloudApps</class>
+  <versionHandler>com.magnolia.cloud.apps.setup.MagnoliaCloudAppsVersionHandler</versionHandler>
+  <version>${project.version}</version>
+
+  <dependencies>
+    <dependency>
+      <name>core</name>
+      <version>5.5.5/*</version>
+    </dependency>
+    <!--  Add other dependencies here, e.g the mte (magnolia templating essentials).
+    <dependency>
+      <name>mte</name>
+      <version>0.7/*</version>
+    </dependency>
+    -->
+  </dependencies>
+</module>

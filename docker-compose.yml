@@ -1,0 +1,27 @@
+version: '2'
+ 
+services:
+  mysql:
+    image: mysql
+    container_name: mysql-dev
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "cloud321"
+      MYSQL_DATABASE: "magnolia"
+      MYSQL_USER: "magnolia"
+      MYSQL_PASSWORD: "cloud123"
+    volumes:
+      - /Users/${USER}/Documents/mount/database/dev:/var/lib/mysql
+  author:
+    image: magnolia-cloud
+    container_name: mgnl-dev
+    command: run
+    ports:
+      - "3000:8080"
+    links:
+      - mysql:mysql-author
+    environment:
+      - INSTANCE_TYPE=author
+    volumes:
+      - /Users/${USER}/Documents/mount/mgnl/dev:/opt/mgnl
