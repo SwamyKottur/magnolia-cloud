@@ -14,7 +14,7 @@ Things to download for development environment
     
     1. Install JDK 8 and add Path variable - 
     2. Install Maven and add Path variable - Example: https://www.mkyong.com/maven/install-maven-on-mac-osx/
-    3. Find or Create .m2 folder under your /Users/<UserName>/ and copy the setting.xml from repo to this location
+    3. Find or Create .m2 folder under your /Users/<UserName>/ and copy the settings.xml from repo to this location
     4. Install Docker for Mac on Mac OS
     5. Install Vagrant
 
