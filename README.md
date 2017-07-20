@@ -30,7 +30,7 @@ Steps to bring up development environment
     4. vagrant up --no-parallel
 
     Steps to boot magnolia
-    1. vagrant up --no-parallel (Issues this command on terminal inside the magnolia-cloud folder)
+    1. vagrant up --no-parallel (Run this command on terminal inside the magnolia-cloud folder)
 
     Steps to stop magnolia
-    1. vagrant halt (Issues this command on terminal inside the magnolia-cloud folder)
+    1. vagrant halt (Run this command on terminal inside the magnolia-cloud folder)
