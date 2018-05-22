@@ -22,13 +22,13 @@
       <param name="path" value="${wsp.home}/default" />
     </FileSystem>
     <PersistenceManager class="org.apache.jackrabbit.core.persistence.bundle.H2PersistenceManager">
-      <param name="url" value="jdbc:h2:${wsp.home}/db" />
+      <param name="url" value="jdbc:h2:${wsp.home}/db;AUTO_SERVER=TRUE" />
       <param name="schemaObjectPrefix" value="pm_${wsp.name}_" />
     </PersistenceManager>
-    <SearchIndex class="org.apache.jackrabbit.core.query.lucene.SearchIndex">
+    <SearchIndex class="info.magnolia.jackrabbit.lucene.SearchIndex">
       <param name="path" value="${wsp.home}/index" />
       <!-- SearchIndex will get the indexing configuration from the classpath, if not found in the workspace home -->
-      <param name="indexingConfiguration" value="/info/magnolia/jackrabbit/indexing_configuration.xml"/>
+      <param name="indexingConfiguration" value="/info/magnolia/jackrabbit/indexing_configuration_${wsp.name}.xml"/>
       <param name="useCompoundFile" value="true" />
       <param name="minMergeDocs" value="100" />
       <param name="volatileIdleTime" value="3" />
@@ -59,7 +59,7 @@
       <param name="path" value="${rep.home}/workspaces/version" />
     </FileSystem>
     <PersistenceManager class="org.apache.jackrabbit.core.persistence.bundle.H2PersistenceManager">
-      <param name="url" value="jdbc:h2:${rep.home}/version/db" />
+      <param name="url" value="jdbc:h2:${rep.home}/version/db;AUTO_SERVER=TRUE" />
       <param name="schemaObjectPrefix" value="version_" />
     </PersistenceManager>
   </Versioning>

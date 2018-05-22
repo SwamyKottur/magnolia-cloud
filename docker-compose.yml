@@ -2,26 +2,29 @@ version: '2'
  
 services:
   mysql:
-    image: mysql
-    container_name: mysql-dev
+    image: percona/percona-xtradb-cluster:5.7
+    container_name: mysql-author
     ports:
-      - 3306:3306
+      - 3307:3306
     environment:
-      MYSQL_ROOT_PASSWORD: "cloud321"
+      MYSQL_ROOT_PASSWORD: "!34a6Bjg"
       MYSQL_DATABASE: "magnolia"
       MYSQL_USER: "magnolia"
-      MYSQL_PASSWORD: "cloud123"
+      MYSQL_PASSWORD: "magnolia123"
+      CLUSTER_NAME: "cluster-1"
     volumes:
-      - /Users/${USER}/Documents/mount/database/dev:/var/lib/mysql
+      - /Users/${USER}/Documents/mount/database/cloud:/var/lib/mysql
   author:
-    image: magnolia-cloud
-    container_name: mgnl-dev
+    build: .
+    container_name: mgnl-author
     command: run
     ports:
-      - "3000:8080"
+      - "3100:8080"
+    depends_on:
+      - mysql
     links:
       - mysql:mysql-author
     environment:
       - INSTANCE_TYPE=author
     volumes:
-      - /Users/${USER}/Documents/mount/mgnl/dev:/opt/mgnl
+      - /Users/${USER}/Documents/mount/mgnl/cloud:/opt/mgnl    

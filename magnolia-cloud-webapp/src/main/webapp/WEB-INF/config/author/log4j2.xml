@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+    <Console name="console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %-5p %-50.50c: %m%n"/>
+    </Console>
+   
+<!-- mail appender. You may want to enable this on production to be immediately notified in case of errors -->
+<!--
+    <SMTP name="smtp"
+          suppressExceptions="false"
+          subject="[magnolia error ${pom.version} ${server}] %m" 
+          to="myerrormailbox@mymailserver.com" 
+          from="my magnolia website &lt;magnolia@mymagnoliasite.com&gt;"
+          smtpHost="localhost" 
+          smtpPort="25"
+          bufferSize="512">
+
+        <ThresholdFilter level="error" onMatch="NEUTRAL" onMismatch="DENY" /> 
+        <RegexFilter regex="org.apache.catalina.*" onMatch="DENY" onMismatch="ACCEPT"/>
+        <RegexFilter regex="org.apache.coyote.*" onMatch="DENY" onMismatch="ACCEPT"/>
+        <RegexFilter regex="org.apache.tomcat.*" onMatch="DENY" onMismatch="ACCEPT"/>
+        <RegexFilter regex="org.apache.jasper.*" onMatch="DENY" onMismatch="ACCEPT"/>
+        <PatternLayout>
+            <pattern>[${server}] %-5p %d{dd.MM.yyyy HH:mm:ss} %c %F(%M:%L) - %m%n</pattern>
+            <header>%n
+===================================%n
+Magnolia%n
+Version: ${pom.version}%n
+Server: ${server}%n
+Url: %X{requesturi}%n
+Referer: %X{Referer}%n
+User-Agent: %X{User-Agent}%n
+Remote-Host: %X{Remote-Host}%n
+Session Id: %X{SessionId}%n
+Userid: %X{userid}%n
+Number of occurrences: %o%n
+===================================%n
+        </header>
+            <footer>%n===================================%n</footer>
+        </PatternLayout>
+    </SMTP>
+
+    <Async name="mail">
+        <AppenderRef ref="smtp"/>
+    </Async>
+-->
+  </Appenders>
+
+  <Loggers>
+    <!-- Magnolia categories -->
+    <Logger name="info.magnolia" level="INFO"/>
+
+    <!-- Activation - additivity is true so logs also go to sub-categories' appenders -->
+    <!-- <Logger name="info.magnolia.cms.exchange" level="INFO" additivity="true">
+      <AppenderRef ref="log-activation"/>
+    </Logger>
+    <Logger name="info.magnolia.module.activation" level="INFO" additivity="true">
+      <AppenderRef ref="log-activation"/>
+    </Logger> -->
+
+    <!-- Publishing - additivity is true so logs also go to sub-categories' appenders -->
+    <Logger name="info.magnolia.publishing" level="INFO" additivity="true">
+      <AppenderRef ref="console"/>
+    </Logger>
+
+    <!-- bootstrapping -->
+    <Logger name="info.magnolia.importexport.Bootstrapper" level="INFO" additivity="true">
+      <AppenderRef ref="console"/>
+    </Logger>
+
+    <!-- Custom log categories - additivity is false so logs only go to the appenders configured here -->
+    <Logger name="log-access" additivity="false">
+      <AppenderRef ref="console"/>
+    </Logger>
+    <Logger name="log-audit" additivity="false">
+      <AppenderRef ref="console"/>
+    </Logger>
+    <Logger name="log-form" additivity="false">
+      <AppenderRef ref="console"/>
+    </Logger>
+
+    <!-- External libraries -->
+    <Logger name="org" level="WARN"/>
+    <Logger name="org.apache.jackrabbit" level="WARN"/>
+
+    <!-- Reflections library spoils logs with hundreds of harmless warnings; tries to look into native libs but none of its DefaultUrlTypes can handle them. -->
+    <Logger name="org.reflections" level="ERROR"/>
+    <Logger name="com" level="WARN"/>
+    <Logger name="net" level="WARN"/>
+    <Logger name="freemarker" level="WARN"/>
+    <Logger name="httpclient" level="WARN"/>
+    <Logger name="openwfe.org.log" level="WARN"/>
+    <Logger name="openwfe" level="WARN"/>
+
+    <Root level="ALL">
+      <AppenderRef ref="console"/>
+    </Root>
+  </Loggers>
+
+</Configuration>

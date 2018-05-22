@@ -16,15 +16,16 @@ Vagrant.configure("2") do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.define "db" do |db|
     db.vm.provider "docker" do |d|
-      d.image = "mysql"
-      d.name = "mysql-cloud-author"
+      d.image = "percona/percona-xtradb-cluster:5.7"
+      d.name = "mysql-author"
       d.volumes = ["/Users/#$logged_user/Documents/mgnl-cloud/database/author:/var/lib/mysql"]
       d.expose = [3306]
       d.env = {
-        "MYSQL_ROOT_PASSWORD" => "cloud321",
+        "MYSQL_ROOT_PASSWORD" => "magnolia321",
         "MYSQL_USER" => "magnolia",
-        "MYSQL_PASSWORD" => "cloud123",
-        "MYSQL_DATABASE" => "magnolia"
+        "MYSQL_PASSWORD" => "magnolia123",
+        "MYSQL_DATABASE" => "magnolia",
+        "CLUSTER_NAME" => "cluster-1"
       }
       # d.has_ssh = true
       d.ports = ['3306:3306']
@@ -36,9 +37,9 @@ Vagrant.configure("2") do |config|
     mgnl.vm.provider "docker" do |m|
       m.build_dir = "."
       # m.image = ""
-      m.link "mysql-cloud-author:mysql-cloud-author"
+      m.link("mysql-author:mysql-author")
       m.expose = [8080]
-      m.name = "mgnl-cloud-author"
+      m.name = "mgnl-author"
       m.volumes = ["/Users/#$logged_user/Documents/mgnl-cloud/mgnl/author:/opt/mgnl"]
       m.env = { "INSTANCE_TYPE" => "author" }
       # m.has_ssh = true

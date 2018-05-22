@@ -3,18 +3,16 @@
 <Repository>
   <DataSources>
     <DataSource name="magnolia">
-      <param name="driver" value="com.mysql.jdbc.Driver" />
-      <param name="url" value="jdbc:mysql://mysql-public:3306/magnolia" />
-      <param name="user" value="magnolia" />
-      <param name="password" value="cloud123" />
-      <param name="databaseType" value="mysql"/>
-      <param name="validationQuery" value="select 1"/>
-    </DataSource>
-    <!--<DataSource name="magnolia">
         <param name="driver" value="javax.naming.InitialContext"/>
-        <param name="url" value="java:comp/env/jdbc/MagnoliaAuthor"/>
+        <param name="url" value="java:comp/env/jdbc/MagnoliaPublic"/>
         <param name="databaseType" value="mysql"/>
-    </DataSource>-->
+        <!-- <param name="driver" value="com.mysql.jdbc.Driver" />
+        <param name="url" value="jdbc:mysql://mysql-public:3306/magnolia" />
+        <param name="user" value="magnolia" />
+        <param name="password" value="magnolia123" />
+        <param name="databaseType" value="mysql"/>
+        <param name="validationQuery" value="select 1"/> -->
+    </DataSource>
   </DataSources>
   <FileSystem class="org.apache.jackrabbit.core.fs.local.LocalFileSystem">
      <param name="path" value="${rep.home}/repository" />
@@ -28,7 +26,7 @@
     </LoginModule>
   </Security>
   <DataStore class="org.apache.jackrabbit.core.data.FileDataStore">
-    <param name="path" value="/opt/jetblue/mgnl-cluster/datastore"/>
+    <param name="path" value="/opt/mgnl-cluster/datastore"/>
     <param name="minRecordLength" value="1024"/>
   </DataStore>
   <Workspaces rootPath="${rep.home}/workspaces" defaultWorkspace="default" />
@@ -40,10 +38,10 @@
       <param name="dataSourceName" value="magnolia"/>
       <param name="schemaObjectPrefix" value="pm_${wsp.name}_" />
     </PersistenceManager>
-    <SearchIndex class="org.apache.jackrabbit.core.query.lucene.SearchIndex">
+    <SearchIndex class="info.magnolia.jackrabbit.lucene.SearchIndex">
       <param name="path" value="${wsp.home}/index" />
       <!-- SearchIndex will get the indexing configuration from the classpath, if not found in the workspace home -->
-      <param name="indexingConfiguration" value="/info/magnolia/jackrabbit/indexing_configuration.xml"/>
+      <param name="indexingConfiguration" value="/info/magnolia/jackrabbit/indexing_configuration_${wsp.name}.xml"/>
       <param name="useCompoundFile" value="true" />
       <param name="minMergeDocs" value="100" />
       <param name="volatileIdleTime" value="3" />
@@ -81,15 +79,16 @@
   <Cluster syncDelay="2000">
     <Journal class="org.apache.jackrabbit.core.journal.DatabaseJournal">
       <param name="revision" value="${rep.home}/revision"/>
-      <param name="driver" value="com.mysql.jdbc.Driver"/>
+      <param name="driver" value="javax.naming.InitialContext"/>
+      <param name="url" value="java:comp/env/jdbc/MagnoliaPublic"/>
+      <param name="databaseType" value="mysql"/>
+      <!-- <param name="driver" value="com.mysql.jdbc.Driver"/>
       <param name="url" value="jdbc:mysql://mysql-public:3306/magnolia"/>
       <param name="user" value="magnolia"/>
-      <param name="password" value="cloud123"/>
-      <param name="databaseType" value="mysql"/>
-      <!--<param name="driver" value="javax.naming.InitialContext"/>
-      <param name="url" value="java:comp/env/jdbc/MagnoliaAuthor"/>
-      <param name="databaseType" value="mysql"/>-->
+      <param name="password" value="magnolia123"/>
+      <param name="databaseType" value="mysql"/> -->
       <param name="schemaObjectPrefix" value="JOURNAL_"/>
+      <param name="janitorEnabled" value="true" />
     </Journal>
   </Cluster>
 </Repository>

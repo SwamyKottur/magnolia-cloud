@@ -85,10 +85,6 @@
       <artifactId>magnolia-cloud-apps</artifactId>
     </dependency>
     <dependency>
-      <groupId>info.magnolia.rest</groupId>
-      <artifactId>magnolia-rest-tools</artifactId>
-    </dependency>
-    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
     </dependency>

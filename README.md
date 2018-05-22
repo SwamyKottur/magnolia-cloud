@@ -27,7 +27,7 @@ Steps to bring up development environment
     1. Clone the repo
     2. cd magnolia-cloud
     3. mvn -U clean install
-    4. vagrant up --no-parallel
+    4. vagrant up --no-parallel (or) docker-compose up -d --build
 
     Steps to boot magnolia
     1. vagrant up --no-parallel (Run this command on terminal inside the magnolia-cloud folder)
